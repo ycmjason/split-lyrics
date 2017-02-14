@@ -1,0 +1,4 @@
+# created by gitignorer
+# profile used: node
+*.sw*
+node_modules
