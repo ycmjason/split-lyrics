@@ -1,6 +1,6 @@
 {
   "name": "split-lyrics",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Split the lyrics into half and display them on screen.",
   "repository": {
     "type": "git",
@@ -15,8 +15,9 @@
     "preversion": "git checkout master && git merge --squash dev && npm test",
     "version": "git add -A",
     "postversion": "git checkout - && git merge master -m 'Merge with master'",
-    "prepublishOnly": "git checkout master",
-    "postpublish": "git push && git push --tags && git checkout -",
+    "predeploy": "git checkout master",
+    "deploy": "git push dokku@aws:split-lyrics",
+    "postdeploy": "git push && git push --tags && git checkout -",
     "postinstall": "npm run build",
     "\n# BUILD SCRIPTS": "",
     "build": "npm run build:js && npm run build:css",
@@ -43,5 +44,8 @@
     "eslint": "^4.16.0",
     "husky": "^0.14.3",
     "postcss-cli": "^4.1.1"
+  },
+  "engines": {
+    "node": ">=8"
   }
 }
