@@ -12,6 +12,8 @@
   "homepage": "https://github.com/ycmjason/split-lyrics#readme",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "test": "npm run lint:js",
     "preversion": "git checkout master && git merge --squash dev && npm test",
     "version": "git add -A",
     "postversion": "git checkout - && git merge master -m 'Merge with master'",
@@ -23,7 +25,6 @@
     "build": "npm run build:js && npm run build:css",
     "build:css": "postcss static/css/*.css -o static/dist/index.css --use autoprefixer",
     "build:js": "babel static/js -d static/dist",
-    "start": "node index.js",
     "lint:js": "eslint --ignore-path .gitignore .",
     "\n# HUSKY GITHOOKS": "",
     "precommit": "npm run lint:js"
