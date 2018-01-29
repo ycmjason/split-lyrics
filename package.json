@@ -1,6 +1,6 @@
 {
   "name": "split-lyrics",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Split the lyrics into half and display them on screen.",
   "repository": {
     "type": "git",
