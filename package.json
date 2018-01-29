@@ -1,6 +1,6 @@
 {
   "name": "split-lyrics",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Split the lyrics into half and display them on screen.",
   "repository": {
     "type": "git",
@@ -12,10 +12,12 @@
   "homepage": "https://github.com/ycmjason/split-lyrics#readme",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "test": "npm run lint:js",
     "preversion": "git checkout master && git merge --squash dev && npm test",
     "version": "git add -A",
     "postversion": "git checkout - && git merge master -m 'Merge with master'",
-    "predeploy": "git checkout master",
+    "predeploy": "git checkout master && npm test",
     "deploy": "git push dokku@aws:split-lyrics",
     "postdeploy": "git push && git push --tags && git checkout -",
     "postinstall": "npm run build",
@@ -23,7 +25,6 @@
     "build": "npm run build:js && npm run build:css",
     "build:css": "postcss static/css/*.css -o static/dist/index.css --use autoprefixer",
     "build:js": "babel static/js -d static/dist",
-    "start": "node index.js",
     "lint:js": "eslint --ignore-path .gitignore .",
     "\n# HUSKY GITHOOKS": "",
     "precommit": "npm run lint:js"
@@ -32,7 +33,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.2",
-    "grab-lyrics": "^0.2.2",
+    "grab-lyrics": "^0.2.4",
     "morgan": "^1.9.0"
   },
   "devDependencies": {
