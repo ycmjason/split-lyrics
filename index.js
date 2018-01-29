@@ -8,14 +8,13 @@ const PORT = process.env.PORT || 8080;
 app.use(morgan('dev'));
 app.use(express.static('static'));
 
-app.get('/api/grabtext', (req, res) => {
+app.get('/api/grab', (req, res) => {
   const url = req.query.url;
-  grabLyrics(url).then(text => res.json({
-    url,
-    text,
-  }));
+  grabLyrics(url).then(({ title, artist, lyrics }) => res.json({
+    title,
+    artist,
+    lyrics,
+  })).catch(e => console.log(e));
 });
 
-app.listen(PORT, function(){
-  console.log('Listening on port ' + PORT + '...');
-});
+app.listen(PORT, () => console.log('Listening on port ' + PORT + '...'));

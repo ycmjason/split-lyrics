@@ -1,0 +1,104 @@
+i.heart::before {
+  content: '❤';
+  color: red;
+  display: inline;
+  font-style: normal;
+}
+
+html {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  color: DarkSlateGray;
+  letter-spacing: 0.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Indie Flower', cursive;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  letter-spacing: 1;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+    color: green;
+}
+
+a:hover {
+    color: hotpink;
+}
+
+button, input, textarea {
+  font-size: inherit;
+  font-family: inherit;
+  letter-spacing: inherit;
+  outline: none;
+  border: 1px solid green;
+  border-radius: 1rem;
+  padding: 1rem;
+  color: inherit;
+  resize: none;
+  width: 100%;
+}
+
+input:hover, textarea:hover {
+  outline: none;
+  border: 1px solid hotpink;
+}
+
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+header .heading {
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 1rem;
+}
+
+header form {
+  flex-basis: 20rem;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.split {
+  display: flex;
+}
+
+.split textarea:first-of-type {
+  margin-right: 1rem;
+}
+
+.split textarea {
+  flex-grow: 1;
+  overflow: auto;
+  height: 100vh;
+  max-height: calc(100vh - 5rem);
+}
+
+footer {
+  margin-top: 2rem;
+  background: hotpink;
+  padding-top: 3rem;
+  min-height: 8rem;
+}
+
+footer section {
+  text-align: center;
+}

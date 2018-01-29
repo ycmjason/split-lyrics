@@ -1,66 +1,47 @@
 <html>
   <head>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Slabo+27px" rel="stylesheet">
-    <style>
-      textarea{
-        width: 45%;
-        height: 90%;
-        border: 1px solid #888; 
-        outline: none;
-        resize: none;
-        overflow: auto;
-        font-family: arial;
-        font-size: 1.5em;
-        line-height: 1.3em;
-      }
-    </style>
     <title>Split lyrics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Indie+Flower" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" rel="stylesheet">
+    <link href="/dist/index.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
   </head>
   <body>
-    <h1>Put the lyrics link in:</h1>
-    <input id="url" type="text" placeholder="http://www.azlyrics.com/lyrics/johnmayer/xo.html" size="100">
-    <button id="submit">submit</button>
-    <div>
-      <textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-gramm_editor="false"></textarea>
-      <textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-gramm_editor="false"></textarea>
-    </div>
-<script>
-if(!fetch){
-  document.innerHTML('Please use a mordern browser or update your browser.');
-  console.error('no fetch found');
-}
-document.getElementById('submit').addEventListener('click', submitUrl);
-function submitUrl(){
-  var url = document.getElementById('url').value;
-  var endpoint = 'api/grabtext?url=' + url;
-  fetch(endpoint).then(function(res){
-    return res.json();
-  }).then(function(res){
-    populateTextboxes(res.text);
-  });
-}
+    <header class="container">
+      <a class="heading" href="/"><h1>Split Lyrics</h1></a>
+      <form>
+        <input id="url" type="text" placeholder="http://www.azlyrics.com/lyrics/johnmayer/xo.html, hit enter">
+      </form>
+    </header>
 
-function populateTextboxes(text){
-  var texts = split(text);
-  var textareas = document.querySelectorAll('textarea');
-  textareas.forEach(function(textarea, i){
-    textarea.value = texts[i];
-  });
-}
+    <main class="container">
+      <section class="meta"></section>
 
-function split(s){
-  // split according to line number
-  var ps = s.split('\n\n');
-  var ps1 = [];
-  var ps2 = [];
-  for(var i = 0; i < Math.floor(ps.length/2); i++){
-    ps1.push(ps[i]);
-  }
-  for(var i = Math.floor(ps.length/2); i < ps.length; i++){
-    ps2.push(ps[i]);
-  }
-  return [ps1.join('\n\n'), ps2.join('\n\n')];
-}
-</script>
+      <section class="split">
+        <textarea
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
+          spellcheck="false"
+          data-gramm_editor="false"></textarea>
+        <textarea
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
+          spellcheck="false"
+          data-gramm_editor="false"></textarea>
+      </section>
+    </main>
+
+    <footer>
+      <section class="container">
+        <h2>Made with <i class="heart"></i> by <a href="https://github.com/ycmjason/">Jason Yu</a></h2>
+      </section>
+    </footer>
+
+    <script src="/dist/index.js"></script>
   </body>
 </html>
