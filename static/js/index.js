@@ -6,6 +6,7 @@
 
   const submitUrl = (e) => {
     e.preventDefault();
+    if ('ga' in window) window.ga('send', 'event', 'lyrics', 'submit', elems.url.value);
     fetch(`api/grab?url=${encodeURIComponent(elems.url.value)}`)
       .then(res => res.json())
       .then(({ title, artist, lyrics }) => {
