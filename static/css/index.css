@@ -77,6 +77,11 @@ header form {
   flex-shrink: 1;
 }
 
+main {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
 .split {
   display: flex;
 }
