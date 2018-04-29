@@ -4,18 +4,25 @@
     splitareas: [].slice.apply(document.querySelectorAll('textarea')),
   };
 
-  const submitUrl = (e) => {
-    e.preventDefault();
-    if ('ga' in window) window.ga('send', 'event', 'lyrics', 'submit', elems.url.value);
-    fetch(`api/grab?url=${encodeURIComponent(elems.url.value)}`)
+  const populateTextboxes = (text) => split(text).forEach((half, i) => elems.splitareas[i].value = half);
+
+  const submitUrl = (url) => {
+    const query = `?url=${encodeURIComponent(url)}`;
+    window.history.pushState({}, '', query);
+
+    fetch(`api/grab${query}`)
       .then(res => res.json())
       .then(({ title, artist, lyrics }) => {
-        console.log(title, artist);
+        // tracking
+        if ('ga' in window) {
+          window.ga('send', 'event', 'url', 'submit', url);
+          window.ga('send', 'event', 'title', 'submit', title);
+          window.ga('send', 'event', 'artist', 'submit', artist);
+        }
+
         populateTextboxes(lyrics);
       });
   };
-
-  const populateTextboxes = (text) => split(text).forEach((half, i) => elems.splitareas[i].value = half);
 
   const split = (s) => {
     const ps = s.split('\n\n');
@@ -26,5 +33,15 @@
     ];
   };
 
-  document.querySelector('form').addEventListener('submit', submitUrl);
+  const url = new URL(window.location.href).searchParams.get('url');
+  if (url) {
+    elems.url.value = url;
+    submitUrl(url);
+  }
+
+  document.querySelector('form').addEventListener('submit', e => {
+    e.preventDefault();
+    submitUrl(elems.url.value);
+  });
+
 })();
