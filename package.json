@@ -1,6 +1,6 @@
 {
   "name": "split-lyrics",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Split the lyrics into half and display them on screen.",
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "build": "npm run build:js && npm run build:css",
     "build:css": "postcss static/css/*.css -o static/dist/index.css --use autoprefixer",
     "build:js": "babel static/js -d static/dist",
+    "build:js:watch": "npm run build:js -- --watch",
     "lint:js": "eslint --ignore-path .gitignore .",
     "\n# HUSKY GITHOOKS": "",
     "precommit": "npm run lint:js"
@@ -32,19 +33,19 @@
   "author": "Jason Yu <me@ycmjason.com>",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.2",
+    "express": "^4.16.3",
     "grab-lyrics": "^0.2.4",
     "morgan": "^1.9.0"
   },
   "devDependencies": {
-    "@ycm.jason/eslint-config": "^1.0.0",
-    "autoprefixer": "^7.2.5",
+    "@ycm.jason/eslint-config": "^1.2.0",
+    "autoprefixer": "^8.4.1",
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "eslint": "^4.16.0",
+    "eslint": "^4.19.1",
     "husky": "^0.14.3",
-    "postcss-cli": "^4.1.1"
+    "postcss-cli": "^5.0.0"
   },
   "engines": {
     "node": ">=8"
